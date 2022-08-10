@@ -1,0 +1,39 @@
+password = input()
+password2 = input()
+new_ps = ""
+new_ps2 = ""
+
+for p in password:
+    if p.isdigit():
+        p = str((int(p)+1) % 10)
+    else:
+        if p.islower():
+            if ord(p) == 122:
+                p = 'A'
+            else:
+                p = (chr(ord(p) + 1)).upper()
+        else:
+            if ord(p) == 90:
+                p = 'a'
+            else:
+                p = (chr(ord(p) + 1)).lower()
+    new_ps = new_ps + p
+
+for p in password2:
+    if p.isdigit():
+        p = str((int(p)+9) % 10)
+    else:
+        if p.islower():
+            if ord(p) == 97:
+                p = 'Z'
+            else:
+                p = (chr(ord(p) - 1)).upper()
+        else:
+            if ord(p) == 65:
+                p = 'z'
+            else:
+                p = (chr(ord(p) - 1)).lower()
+    new_ps2 = new_ps2 + p
+
+print(new_ps)
+print(new_ps2)

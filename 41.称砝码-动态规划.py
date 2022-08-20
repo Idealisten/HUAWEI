@@ -2,6 +2,7 @@
 我们可以先计算出所有砝码总重量，然后用长为总重量sum+1sum+1sum+1的bool型的dp数组计算每种重量是否可能出现，最后遍历这个dp数组统计每种重量出现的次数。
 首先dp[0]=1dp[0]=1dp[0]=1，然后我们遍历每个砝码（即每种重量的每一个），每次从sum开始往下递减，如果该重量k减去当前遍历到的这个砝码的重量得到的那个重量已经出现了即已经被别的组装好了，那我们就认为这个重量可以出现，置为1.
 """
+from numba import jit
 n = int(input())
 m = [int(i) for i in input().split()]
 x = [int(i) for i in input().split()]

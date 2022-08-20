@@ -12,19 +12,12 @@ n = int(input())
 m = [int(i) for i in input().split()]
 x = [int(i) for i in input().split()]
 
-# sumlist = [0]
 sumset = {0}
 
 for i in range(n):
     for j in range(x[i]):
-        # for k in sumlist.copy():
-        sumset2 = sumset.copy()
-        for k in sumset2:
-            # if k + m[i] not in sumlist:
-            if k + m[i] not in sumset2:
-                # sumlist.append(k+m[i])
-                sumset.add(k+m[i])
+        for k in list(sumset):
+            sumset.add(k+m[i])
 
-# print(len(sumlist))
 print(len(sumset))
 

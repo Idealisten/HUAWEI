@@ -1,9 +1,23 @@
+"""
+类似利扣718
+滑动窗口方法，上短下长，从左向右滑动下方较长字符串
+分为三个阶段：
+1.重合长度小于较短字符串
+2.重合长度等于较短字符串
+3.重合长度再次小于较短字符串
+三个阶段分别将重合部分从左向右扫描，字符相同count计数+1同时判断count是否大于最大相同值max_len，
+不相同时将count归0，在下一位重新进行判断
+三个阶段都扫描完成后返回最大值
+
+每当count>max_len时更新begin值
+每当count == max_len时，判断当前begin值是否比之前的小，如果小更新begin值
+"""
 nums1 = input()
 nums2 = input()
 max_len = 0
 max_sub_nums: str = ""
 max_len = 0
-begin = len(nums1)
+begin = len(nums1)  # 最长子串在字符串1的开始位置
 # 短的(len1)不动滑动长的(len2)
 if len(nums1) > len(nums2):
     t = nums1
@@ -29,7 +43,6 @@ while len_con < len1:
                 max_sub_nums = sub_nums1[i - max_len + 1:i + 1]
                 begin = i - max_len + 1
             if count == max_len and i-max_len+1 < begin:
-                max_sub_nums = sub_nums1[i-max_len+1:i+1]
                 begin = i-max_len+1
                 # print("max_len:{}".format(max_len))
                 # print("max_sub_nums:{}".format(max_sub_nums))
@@ -56,7 +69,6 @@ while len_con + mo <= len2:
                 ax_sub_nums = sub_nums1[i - max_len + 1:i + 1]
                 begin = i - max_len + 1
             if count == max_len and i-max_len+1 < begin:
-                max_sub_nums = sub_nums1[i-max_len+1:i+1]
                 begin = i-max_len+1
                 # print("max_len:{}".format(max_len))
                 # print("max_sub_nums:{}".format(max_sub_nums))
@@ -82,7 +94,6 @@ while len_con >= 1:
                 max_sub_nums = sub_nums1[i - max_len + 1:i + 1]
                 begin = i - max_len + 1 + len1 - len_con
             if count == max_len and i-max_len+1+len1-len_con < begin:
-                max_sub_nums = sub_nums1[i-max_len+1:i+1]
                 begin = i-max_len+1+len1-len_con
                 # print("max_len:{}".format(max_len))
                 # print("max_sub_nums:{}".format(max_sub_nums))
@@ -93,5 +104,5 @@ while len_con >= 1:
     # print("")
 
 # print(max_len)
-# max_sub_nums = nums1[begin:begin+max_len]
+max_sub_nums = nums1[begin:begin+max_len]
 print(max_sub_nums)
